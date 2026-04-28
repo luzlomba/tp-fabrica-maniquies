@@ -24,4 +24,3 @@ WHERE cabeza.fecha_fabricacion > '2026-01-01';
 
 /*3-Modelos por talla: Listar todos los torsos cuyo talle sea 'mediano' o ‘largo', ordenados por material de  forma alfabética.
 */
-

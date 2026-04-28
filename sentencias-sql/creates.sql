@@ -11,8 +11,9 @@ CREATE TABLE color (
     nombre VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE modelo_cabeza (
+CREATE TABLE modelo_pieza (
     id_modelo INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(20) NOT NULL,
     genero VARCHAR(30) NOT NULL,
     talle VARCHAR(20) NOT NULL,
     id_material INT NOT NULL,
@@ -21,27 +22,9 @@ CREATE TABLE modelo_cabeza (
     FOREIGN KEY (id_color) REFERENCES color(id_color)
 );
 
-CREATE TABLE modelo_torso (
+CREATE TABLE modelo_extremidad (
     id_modelo INT PRIMARY KEY AUTO_INCREMENT,
-    genero VARCHAR(30) NOT NULL,
-    talle VARCHAR(20) NOT NULL,
-    id_material INT NOT NULL,
-    id_color INT NOT NULL,
-    FOREIGN KEY (id_material) REFERENCES material(id_material),
-    FOREIGN KEY (id_color) REFERENCES color(id_color)
-);
-
-CREATE TABLE modelo_brazo (
-    id_modelo INT PRIMARY KEY AUTO_INCREMENT,
-    lado VARCHAR(20) NOT NULL CHECK (lado IN ('izquierdo', 'derecho')),
-    id_material INT NOT NULL,
-    id_color INT NOT NULL,
-    FOREIGN KEY (id_material) REFERENCES material(id_material),
-    FOREIGN KEY (id_color) REFERENCES color(id_color)
-);
-
-CREATE TABLE modelo_pierna (
-    id_modelo INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(20) NOT NULL,
     lado VARCHAR(20) NOT NULL CHECK (lado IN ('izquierdo', 'derecho')),
     id_material INT NOT NULL,
     id_color INT NOT NULL,
@@ -54,7 +37,8 @@ CREATE TABLE cabeza (
     nro_serie VARCHAR(20) NOT NULL,
     fecha_fabricacion DATE NOT NULL,
     id_modelo INT NOT NULL,
-    FOREIGN KEY (id_modelo) REFERENCES modelo_cabeza(id_modelo)
+    tipo VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_modelo) REFERENCES modelo_pieza(id_modelo)
 );
 
 CREATE TABLE torso (
@@ -62,7 +46,8 @@ CREATE TABLE torso (
     nro_serie VARCHAR(20) NOT NULL,
     fecha_fabricacion DATE NOT NULL,
     id_modelo INT NOT NULL,
-    FOREIGN KEY (id_modelo) REFERENCES modelo_torso(id_modelo)
+    tipo VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_modelo) REFERENCES modelo_pieza(id_modelo)
 );
 
 CREATE TABLE brazo (
@@ -70,7 +55,8 @@ CREATE TABLE brazo (
     nro_serie VARCHAR(20) NOT NULL,
     fecha_fabricacion DATE NOT NULL,
     id_modelo INT NOT NULL,
-    FOREIGN KEY (id_modelo) REFERENCES modelo_brazo(id_modelo)
+    tipo VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_modelo) REFERENCES modelo_extremidad(id_modelo)
 );
 
 CREATE TABLE pierna (
@@ -78,7 +64,8 @@ CREATE TABLE pierna (
     nro_serie VARCHAR(20) NOT NULL,
     fecha_fabricacion DATE NOT NULL,
     id_modelo INT NOT NULL,
-    FOREIGN KEY (id_modelo) REFERENCES modelo_pierna(id_modelo)
+    tipo VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_modelo) REFERENCES modelo_extremidad(id_modelo)
 );
 
 CREATE TABLE maniqui (
