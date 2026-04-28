@@ -1,4 +1,3 @@
-
 Table material {
   id_material integer [primary key]
   nombre varchar
@@ -9,62 +8,53 @@ Table color {
   nombre varchar
 }
 
-Table modelo_cabeza {
+Table modelo_pieza {
   id_modelo integer [primary key]
+  tipo varchar
   genero varchar
   talle varchar
+  id_material integer [ref: > material.id_material]
+  id_color integer [ref: > color.id_color]
+}
+
+Table modelo_extremidad {
+  id_modelo integer [primary key]
+  tipo varchar
+  lado varchar
   id_material integer [ref: > material.id_material]
   id_color integer [ref: > color.id_color]
 }
 
 Table cabeza {
   id_cabeza integer [primary key]
+  tipo varchar
   nro_serie varchar
   fecha_fabricacion date
-  id_modelo integer [ref: > modelo_cabeza.id_modelo]
-}
-
-Table modelo_torso {
-  id_modelo integer [primary key]
-  genero varchar
-  talle varchar
-  id_material integer [ref: > material.id_material]
-  id_color integer [ref: > color.id_color]
+  id_modelo integer [ref: > modelo_pieza.id_modelo]
 }
 
 Table torso {
   id_torso integer [primary key]
+  tipo varchar
   nro_serie varchar
   fecha_fabricacion date
-  id_modelo integer [ref: > modelo_torso.id_modelo]
-}
-
-Table modelo_brazo {
-  id_modelo integer [primary key]
-  lado varchar
-  id_material integer [ref: > material.id_material]
-  id_color integer [ref: > color.id_color]
+  id_modelo integer [ref: > modelo_pieza.id_modelo]
 }
 
 Table brazo {
   id_brazo integer [primary key]
+  tipo varchar
   nro_serie varchar
   fecha_fabricacion date
-  id_modelo integer [ref: > modelo_brazo.id_modelo]
-}
-
-Table modelo_pierna {
-  id_modelo integer [primary key]
-  lado varchar
-  id_material integer [ref: > material.id_material]
-  id_color integer [ref: > color.id_color]
+  id_modelo integer [ref: > modelo_extremidad.id_modelo]
 }
 
 Table pierna {
   id_pierna integer [primary key]
+  tipo varchar
   nro_serie varchar
   fecha_fabricacion date
-  id_modelo integer [ref: > modelo_pierna.id_modelo]
+  id_modelo integer [ref: > modelo_extremidad.id_modelo]
 }
 
 Table maniqui {
