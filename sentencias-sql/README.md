@@ -20,6 +20,7 @@ sudo systemctl status mariadb
 
 1. `sentencias-sql/creates.sql` — Crea la base de datos y todas las tablas
 2. `sentencias-sql/inserts.sql` — Carga los datos de prueba
+3. `sentencias-sql/queries.sql` — Consultas de verificación
 
 ## Cómo ejecutar
 Desde la terminal:
@@ -28,3 +29,5 @@ Desde la terminal:
 sudo mysql -u root < sentencias-sql/creates.sql
 sudo mysql -u root < sentencias-sql/inserts.sql
 ```
+
+Para las queries, ejecutarlas desde un cliente SQL como DBeaver abriendo el archivo `sentencias-sql/queries.sql`.
